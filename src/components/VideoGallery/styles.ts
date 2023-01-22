@@ -37,11 +37,21 @@ overflow: scroll;
 display: grid;
 grid-template-columns: repeat(6,300px);
 column-gap: 10px;
-scrollbar-width: none;
--ms-overflow-style: none;
+scrollbar-width: 4px;
+-ms-overflow-style: #f1f1f1;
 &::-webkit-scrollbar {
-    display: none;
+    height: 10px;
+    width: 10px;
   }
+&::-webkit-scrollbar-track{
+  background-color: #f1f1f1;
+}
+&::-webkit-scrollbar-thumb {
+  background: #888;
+}
+&::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 
 .closeVideo{
   width: 40px;

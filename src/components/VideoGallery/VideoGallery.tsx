@@ -56,36 +56,3 @@ const VideoGallery = () => {
 };
 
 export default VideoGallery;
-
-{
-  /* <VideoGalleryContainer>
-<video
-  src="/videos/backgroundVideo.mp4"
-  autoPlay
-  muted
-  loop
-  id="myVideo"
-/>
-<GalleryScreen
-  className={playVideo !== undefined ? "allowFullScreen" : ""}
->
-  {playVideo !== undefined && (
-    <RxCross1
-      className="closeVideo"
-      onClick={() => setPlayVideo(undefined)}
-    />
-  )}
-  {videoFiles.map((filename, index) => (
-    <Screen
-      key={index}
-      className={index === playVideo ? "zoomOutScreen" : ""}
-      src={`/videos/${filename}.mp4`}
-      controls={playVideo !== undefined ? true : false}
-      autoPlay
-      loop
-      onClick={() => setPlayVideo(index)}
-    />
-  ))}
-</GalleryScreen>
-</VideoGalleryContainer> */
-}
