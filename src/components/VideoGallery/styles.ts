@@ -4,16 +4,7 @@ export const VideoGalleryContainer = styled.div`
 width: 100vw;
 height: 100vh;
 display: flex;
-justify-content: center;
-align-items: center;
 
-#bgVideo {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%; 
-  min-height: 100%;
-}
 .allowFullScreen{
   display: inline-block;
   overflow: hidden;
@@ -21,37 +12,23 @@ align-items: center;
   padding: 0;
 }
 .outerContainer{
-  border: 20px solid black;
-  z-index: 2000;
-  border-radius: 20px;
-  background-color: black;
+  width: 80%;
+  height: 90%;
+  
 }
 `
 export const GalleryScreen = styled.div`
 width: 100%;
-max-width: 960px;
+max-width: 100%;
 z-index: 998;
 height: 100%;
-max-height: 600px;
+max-height: 100%;
 overflow: scroll;
 display: grid;
 grid-template-columns: repeat(6,300px);
 column-gap: 10px;
-scrollbar-width: 4px;
--ms-overflow-style: #f1f1f1;
-&::-webkit-scrollbar {
-    height: 10px;
-    width: 10px;
-  }
-&::-webkit-scrollbar-track{
-  background-color: #f1f1f1;
-}
-&::-webkit-scrollbar-thumb {
-  background: #888;
-}
-&::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
+padding: 20px;
+
 
 .closeVideo{
   width: 40px;

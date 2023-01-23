@@ -16,15 +16,8 @@ const VideoGallery = () => {
 
   return (
     <VideoGalleryContainer>
-      <video
-        src="/videos/backgroundVideo.mp4"
-        autoPlay
-        muted
-        loop
-        id="bgVideo"
-      />
       <div className="outerContainer">
-        <TransformWrapper>
+        <TransformWrapper wheel={{ activationKeys: ["Shift"] }}>
           <TransformComponent>
             <GalleryScreen
               ref={galleryRef}
