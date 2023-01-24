@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const VideoGalleryContainer = styled.div`
-width: 100vw;
-height: 100vh;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -16,18 +14,20 @@ justify-content: center;
   position: relative;
   padding: 0;
  }
+
 `
 export const GalleryScreen = styled.div`
-width: 100%;
+width: 100vw;
 height: 100vh;
 z-index: 998;
 overflow: scroll;
-display: flex;
-flex-wrap: wrap;
+display: grid;
+grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+grid-auto-rows: auto;
 align-items: center;
 justify-content: center;
-column-gap: 10px;
-padding:0 10px 10px 0;
+
+padding:0 10px 10px 10px;
 background-color: black;
 
 .closeVideo{
@@ -53,13 +53,21 @@ background-color: black;
   z-index: 999;
 }
 `
-export const Screen = styled.video`
+export const ScreenContainer = styled.div`
 width: 100%;
 max-width: 287px;
 height: 200px;
 border-radius: 13px;
-object-fit: cover;
-margin: 10px 0 0 5px;
+margin: 10px 0 0 0;
+display: flex;
+align-items: center;
+justify-content: center;
 cursor: pointer;
-transition:max-width 0.4s ease-in-out;
+`
+
+export const Screen = styled.video `
+width: 100%;
+height: 100%;
+border-radius: 13px;
+object-fit: cover;
 `

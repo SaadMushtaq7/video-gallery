@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { RxCross1 } from "react-icons/rx";
-import { GalleryScreen, Screen, VideoGalleryContainer } from "./styles";
+import {
+  GalleryScreen,
+  ScreenContainer,
+  VideoGalleryContainer,
+  Screen,
+} from "./styles";
 import { videoFiles } from "../../data";
 
 const VideoGallery = () => {
@@ -16,22 +21,21 @@ const VideoGallery = () => {
 
   return (
     <VideoGalleryContainer>
-      <div className="outerContainer">
-        <TransformWrapper wheel={{ activationKeys: ["Shift"] }}>
-          <TransformComponent>
-            <GalleryScreen
-              ref={galleryRef}
-              className={playVideo !== undefined ? "allowFullScreen" : ""}
-            >
-              {playVideo !== undefined && (
-                <RxCross1
-                  className="closeVideo"
-                  onClick={() => setPlayVideo(undefined)}
-                />
-              )}
-              {videoFiles.map((filename, index) => (
+      <TransformWrapper wheel={{ activationKeys: ["Shift"] }}>
+        <TransformComponent>
+          <GalleryScreen
+            ref={galleryRef}
+            className={playVideo !== undefined ? "allowFullScreen" : ""}
+          >
+            {playVideo !== undefined && (
+              <RxCross1
+                className="closeVideo"
+                onClick={() => setPlayVideo(undefined)}
+              />
+            )}
+            {videoFiles.map((filename, index) => (
+              <ScreenContainer key={index}>
                 <Screen
-                  key={index}
                   className={index === playVideo ? "zoomOutScreen" : ""}
                   src={`/videos/${filename}.mp4`}
                   controls={playVideo !== undefined ? true : false}
@@ -39,11 +43,11 @@ const VideoGallery = () => {
                   loop
                   onClick={() => setPlayVideo(index)}
                 />
-              ))}
-            </GalleryScreen>
-          </TransformComponent>
-        </TransformWrapper>
-      </div>
+              </ScreenContainer>
+            ))}
+          </GalleryScreen>
+        </TransformComponent>
+      </TransformWrapper>
     </VideoGalleryContainer>
   );
 };
