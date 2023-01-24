@@ -22,11 +22,10 @@ height: 100vh;
 z-index: 998;
 overflow: scroll;
 display: grid;
-grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+grid-template-columns: repeat(auto-fill,minmax(300px,auto));
 grid-auto-rows: auto;
 align-items: center;
 justify-content: center;
-
 padding:0 10px 10px 10px;
 background-color: black;
 
@@ -57,7 +56,7 @@ export const ScreenContainer = styled.div`
 width: 100%;
 max-width: 287px;
 height: 200px;
-border-radius: 13px;
+border-radius: 5px;
 margin: 10px 0 0 0;
 display: flex;
 align-items: center;
@@ -68,6 +67,6 @@ cursor: pointer;
 export const Screen = styled.video `
 width: 100%;
 height: 100%;
-border-radius: 13px;
+border-radius: 5px;
 object-fit: cover;
 `
