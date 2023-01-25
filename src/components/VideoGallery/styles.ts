@@ -51,6 +51,7 @@ background-color: black;
   object-fit: fill;
   z-index: 999;
 }
+
 `
 export const ScreenContainer = styled.div`
 width: 100%;
@@ -62,6 +63,13 @@ display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
+
+.screen{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
 `
 
 export const Screen = styled.video `
