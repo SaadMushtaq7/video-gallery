@@ -12,7 +12,6 @@ import { videoFiles } from "../../data";
 
 const VideoGallery = () => {
   const [playVideo, setPlayVideo] = useState<number>();
-  const [hashUrl] = useState<string>("U27UC_Tg00D$.AW?E1nN00EA%4~7ISMw%2-p");
   const [videoLoading, setLoading] = useState<boolean>(true);
   const galleryRef = useRef<any>();
 
@@ -42,7 +41,15 @@ const VideoGallery = () => {
             )}
             {videoFiles.map((filename, index) => (
               <ScreenContainer key={index}>
-                <Blurhash hash={hashUrl} width={287} height={200} />
+                <Blurhash
+                  hash={
+                    index % 2
+                      ? "LEHV6nWB2yk8pyo0adR*.7kCMdnj"
+                      : "U27UC_Tg00D$.AW?E1nN00EA%4~7ISMw%2-p"
+                  }
+                  width={287}
+                  height={200}
+                />
                 <motion.video
                   initial={{ opacity: 0 }}
                   animate={{
