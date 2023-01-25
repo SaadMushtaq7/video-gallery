@@ -59,12 +59,13 @@ max-width: 287px;
 height: 200px;
 border-radius: 5px;
 margin: 10px 0 0 0;
-display: flex;
-align-items: center;
-justify-content: center;
+position: relative;
 cursor: pointer;
 
 .screen{
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   border-radius: 5px;
