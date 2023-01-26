@@ -79,10 +79,6 @@ export const fetchClassesForVideo = (index: number, playVideo?:number, videoRef?
       return finalClass;
     }
 
-    if (index === playVideo) {
-      finalClass = "screenWithoutHover";
-      return finalClass;
-    }
      else {
       return finalClass;
     }

@@ -79,12 +79,16 @@ const VideoGallery: FC<videoGalleryProps> = ({ rowSize }) => {
                   }}
                   transition={{ opacity: { delay: 0.5, duration: 0.4 } }}
                   onLoadedData={onLoaded}
-                  className={fetchClassesForVideo(
-                    index,
-                    playVideo,
-                    videosRef.current[index],
-                    containerRef
-                  )}
+                  className={
+                    index === playVideo
+                      ? "screenWithoutHover"
+                      : fetchClassesForVideo(
+                          index,
+                          playVideo,
+                          videosRef.current[index],
+                          containerRef
+                        )
+                  }
                   src={`/videos/${filename}.mp4`}
                   controls={playVideo !== undefined ? true : false}
                   autoPlay
