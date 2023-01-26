@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Blurhash } from "react-blurhash";
 import { motion } from "framer-motion";
 import { RxCross1 } from "react-icons/rx";
+import { fetchClassesForVideo } from "../../helperFunctions/helper";
 import {
   GalleryScreen,
   ScreenContainer,
@@ -10,9 +11,15 @@ import {
 } from "./styles";
 import { videoFiles } from "../../data";
 
-const VideoGallery = () => {
+type videoGalleryProps = {
+  rowSize: number;
+};
+
+const VideoGallery: FC<videoGalleryProps> = ({ rowSize }) => {
   const [playVideo, setPlayVideo] = useState<number>();
   const [videoLoading, setLoading] = useState<boolean>(true);
+
+  const containerRef = useRef<any>();
   const galleryRef = useRef<any>();
 
   const onLoaded = () => {
@@ -26,12 +33,13 @@ const VideoGallery = () => {
   }, [playVideo]);
 
   return (
-    <VideoGalleryContainer>
+    <VideoGalleryContainer ref={containerRef}>
       <TransformWrapper wheel={{ activationKeys: ["Shift"] }}>
         <TransformComponent>
           <GalleryScreen
             ref={galleryRef}
             className={playVideo !== undefined ? "allowFullScreen" : ""}
+            style={{ gridTemplateColumns: `repeat(${rowSize},1fr)` }}
           >
             {playVideo !== undefined && (
               <RxCross1
@@ -41,7 +49,17 @@ const VideoGallery = () => {
             )}
             {videoFiles.map((filename, index) => (
               <ScreenContainer
-                className={index === playVideo ? "zoomOutScreen" : ""}
+                className={
+                  index === playVideo
+                    ? "zoomOutScreen"
+                    : index % 3
+                    ? // ? "grid-row-span-2"
+                      // : index > videoFiles.length - rowSize &&
+                      //   index < videoFiles.length - 1
+                      // ? "grid-row-autofill"
+                      "grid-row-span-3"
+                    : ""
+                }
                 key={index}
               >
                 <Blurhash
@@ -50,8 +68,9 @@ const VideoGallery = () => {
                       ? "LEHV6nWB2yk8pyo0adR*.7kCMdnj"
                       : "U27UC_Tg00D$.AW?E1nN00EA%4~7ISMw%2-p"
                   }
-                  width={287}
-                  height={200}
+                  width={"100%"}
+                  height={"100%"}
+                  style={{ borderRadius: "5px" }}
                 />
                 <motion.video
                   initial={{ opacity: 0 }}
@@ -60,25 +79,20 @@ const VideoGallery = () => {
                   }}
                   transition={{ opacity: { delay: 0.5, duration: 0.4 } }}
                   onLoadedData={onLoaded}
-                  className={
-                    index === playVideo ? "screenWithoutHover" : "screen"
-                  }
+                  className={fetchClassesForVideo(
+                    index,
+                    rowSize,
+                    videoFiles.length,
+                    playVideo
+                  )}
                   src={`/videos/${filename}.mp4`}
                   controls={playVideo !== undefined ? true : false}
                   autoPlay
                   loop
                   onClick={() => setPlayVideo(index)}
-                  width={287}
-                  height={200}
+                  height={"100%"}
+                  width={`100/${rowSize}%`}
                 />
-                {/* <Screen
-                  className={index === playVideo ? "zoomOutScreen" : ""}
-                  src={`/videos/${filename}.mp4`}
-                  controls={playVideo !== undefined ? true : false}
-                  autoPlay
-                  loop
-                  onClick={() => setPlayVideo(index)}
-                /> */}
               </ScreenContainer>
             ))}
           </GalleryScreen>

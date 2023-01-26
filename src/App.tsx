@@ -3,7 +3,7 @@ import VideoGallery from "./components/VideoGallery/VideoGallery";
 import "./App.css";
 
 const App: FC = () => {
-  return <VideoGallery />;
+  return <VideoGallery rowSize={5} />;
 };
 
 export default App;

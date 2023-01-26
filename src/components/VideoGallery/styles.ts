@@ -22,11 +22,10 @@ height: 100vh;
 z-index: 998;
 overflow: scroll;
 display: grid;
-grid-template-columns: repeat(auto-fill,minmax(300px,auto));
-grid-auto-rows: auto;
-align-items: center;
-justify-content: center;
-padding:0 10px 10px 10px;
+grid-template-columns: repeat(6,1fr);
+column-gap: 10px;
+grid-template-rows: auto;
+padding:0 1% 10px 1%;
 background-color: black;
 
 .closeVideo{
@@ -41,7 +40,7 @@ background-color: black;
 }
 
 .zoomOutScreen{
-  max-width: 100%;
+  width: 100%;
   height: 100%;
   position: absolute;
   right: 0;
@@ -52,15 +51,23 @@ background-color: black;
   z-index: 999;
 }
 
+.grid-row-span-2{
+    grid-row: span 2;
+}
+
+.grid-row-span-1{
+    grid-row: span 1;
+}
+
 `
 export const ScreenContainer = styled.div`
-width: 100%;
-max-width: 287px;
-height: 200px;
+min-height: 200px;
 border-radius: 5px;
 margin: 10px 0 0 0;
 position: relative;
+border-radius: 5px;
 cursor: pointer;
+
 
 .screenWithoutHover{
   position: absolute;
@@ -68,7 +75,6 @@ cursor: pointer;
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 5px;
   object-fit: cover;
 }
 
@@ -80,21 +86,40 @@ cursor: pointer;
   height: 100%;
   border-radius: 5px;
   object-fit: cover;
-  -webkit-transition: -webkit-transform 0.7s;
-	transition: -webkit-transform 0.7s;
-	transition: transform 0.7s;
-	transition: transform 0.7s, -webkit-transform 0.7s; 
+  -webkit-transition: -webkit-transform 0.6s ease-out;
+	transition: -webkit-transform 0.6s ease-out;
+	transition: transform 0.6s ease-out;
+	transition: transform 0.6s, -webkit-transform 0.6s ease-out; 
   &:hover{
     z-index: 2000;
-    -webkit-transform: scale(2);
-	  transform: scale(2);
+    -webkit-transform: scale(1.7);
+	  transform: scale(1.7);
   }
 }
-`
 
-export const Screen = styled.video `
-width: 100%;
-height: 100%;
-border-radius: 5px;
-object-fit: cover;
+.extremeTop:hover{
+  transform-origin: top;
+}
+.extremeLeft:hover{
+  transform-origin: left;
+}
+.extremeRight:hover{
+  transform-origin: right;
+}
+.extremeBottom:hover{
+  transform-origin: bottom;
+}
+
+.extremeTopAndExtremeLeft:hover{
+  transform-origin: top left;
+}
+.extremeTopAndExtremeRight:hover{
+  transform-origin: top right;
+}
+.extremeBottomAndExtremeLeft:hover{
+  transform-origin: bottom left;
+}
+.extremeBottomAndExtremeRight:hover{
+  transform-origin: bottom right;
+}
 `
