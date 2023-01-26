@@ -40,7 +40,10 @@ const VideoGallery = () => {
               />
             )}
             {videoFiles.map((filename, index) => (
-              <ScreenContainer key={index}>
+              <ScreenContainer
+                className={index === playVideo ? "zoomOutScreen" : ""}
+                key={index}
+              >
                 <Blurhash
                   hash={
                     index % 2
@@ -58,7 +61,7 @@ const VideoGallery = () => {
                   transition={{ opacity: { delay: 0.5, duration: 0.4 } }}
                   onLoadedData={onLoaded}
                   className={
-                    index === playVideo ? "screen zoomOutScreen" : "screen"
+                    index === playVideo ? "screenWithoutHover" : "screen"
                   }
                   src={`/videos/${filename}.mp4`}
                   controls={playVideo !== undefined ? true : false}

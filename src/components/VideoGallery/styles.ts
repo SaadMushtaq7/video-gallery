@@ -48,7 +48,7 @@ background-color: black;
   top: 0;
   margin: 0;
   border-radius: 0;
-  object-fit: fill;
+  object-fit: cover;
   z-index: 999;
 }
 
@@ -62,6 +62,16 @@ margin: 10px 0 0 0;
 position: relative;
 cursor: pointer;
 
+.screenWithoutHover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
 .screen{
   position: absolute;
   top: 0;
@@ -70,6 +80,15 @@ cursor: pointer;
   height: 100%;
   border-radius: 5px;
   object-fit: cover;
+  -webkit-transition: -webkit-transform 0.7s;
+	transition: -webkit-transform 0.7s;
+	transition: transform 0.7s;
+	transition: transform 0.7s, -webkit-transform 0.7s; 
+  &:hover{
+    z-index: 2000;
+    -webkit-transform: scale(2);
+	  transform: scale(2);
+  }
 }
 `
 
