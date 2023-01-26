@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState, createRef } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Blurhash } from "react-blurhash";
 import { motion } from "framer-motion";
@@ -21,6 +21,9 @@ const VideoGallery: FC<videoGalleryProps> = ({ rowSize }) => {
 
   const containerRef = useRef<any>();
   const galleryRef = useRef<any>();
+  const videosRef = useRef(
+    [...Array(videoFiles.length)].map(() => createRef<HTMLDivElement>())
+  );
 
   const onLoaded = () => {
     setLoading(false);
@@ -49,16 +52,13 @@ const VideoGallery: FC<videoGalleryProps> = ({ rowSize }) => {
             )}
             {videoFiles.map((filename, index) => (
               <ScreenContainer
+                ref={videosRef.current[index]}
                 className={
                   index === playVideo
                     ? "zoomOutScreen"
                     : index % 3
-                    ? // ? "grid-row-span-2"
-                      // : index > videoFiles.length - rowSize &&
-                      //   index < videoFiles.length - 1
-                      // ? "grid-row-autofill"
-                      "grid-row-span-3"
-                    : ""
+                    ? "grid-row-span-2"
+                    : "grid-row-span-3"
                 }
                 key={index}
               >
@@ -81,9 +81,9 @@ const VideoGallery: FC<videoGalleryProps> = ({ rowSize }) => {
                   onLoadedData={onLoaded}
                   className={fetchClassesForVideo(
                     index,
-                    rowSize,
-                    videoFiles.length,
-                    playVideo
+                    playVideo,
+                    videosRef.current[index],
+                    containerRef
                   )}
                   src={`/videos/${filename}.mp4`}
                   controls={playVideo !== undefined ? true : false}
